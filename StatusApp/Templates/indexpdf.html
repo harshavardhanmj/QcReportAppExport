@@ -1,0 +1,379 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test Status Report</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
+</style>
+
+</head>
+<body>	
+	<div >
+		<div >
+		<CENTER><h1><u><b>Test Status Report - Clinical </b></u></h1></CENTER><br/>
+			<div >
+				
+					<h6 align="center" style="font-family:Montserrat-Regular">Date : <u style="color:blue">{{DisplayDate}}</u> </h6><br/>
+					<h3><u><b>QC Phase </b></u></h3>
+					
+					<table cellpadding="10">
+						<thead>
+							<tr >
+								<th >Product Name</th>
+								
+								<th >Current Status</th>
+								<th >Plan Start date</th>
+								<th >Plan End date</th>
+								<th >Defects Logged</th>
+								<th >Remarks</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for obj in object_list %}
+							<tr >
+								<td >{{obj.ProductName}}</td>
+								
+								<td >{{obj.CurrentStatus}}</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate%}
+												{{auto1.PlanStartDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+												{{auto1.PlanStartDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+												{{auto1.PlanEndDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+												{{auto1.PlanEndDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >{{obj.IssuesLogged}}</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{{auto1.Remarks}}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								
+							</tr>
+							{% endfor %}
+							{% for obj in object_list1 %}
+							<tr >
+								<td >{{obj.ProductName}}</td>
+								
+								<td >{{obj.CurrentStatus}}</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate%}
+												{{auto1.PlanStartDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+												{{auto1.PlanStartDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+												{{auto1.PlanEndDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+												{{auto1.PlanEndDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >{{obj.IssuesLogged}}</td>
+								<td >
+								{% for auto1 in qcproject_list %}
+									{% if auto1.ProductName == obj.ProductName %}
+										
+											{{auto1.Remarks}}
+										{% endif %}
+									
+								{% endfor %}
+								</td>
+								
+							</tr>
+							{% endfor %}
+							
+						</tbody>
+					</table>
+				</div>
+				<div ><br/><br/>
+					<h3><u><b>PQ Phase </b></u></h3>
+						<table cellpadding="10">
+							<thead>
+								<tr >
+									<th >Product Name</th>
+									
+									<th >Current Status</th>
+									<th>Plan Start date</th>
+									<th >Plan End date</th>
+									<th >Defects Logged</th>
+									<th >Remarks</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								{% for obj in pq_list %}
+								<tr >
+									<td >{{obj.ProductName}}</td>
+									
+									<td >{{obj.CurrentStatus}}</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate%}
+													{{auto1.PlanStartDate}}
+												{% else %}
+													<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+													{{auto1.PlanStartDate}}
+												{% endif %}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+													{{auto1.PlanEndDate}}
+												{% else %}
+													<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+													{{auto1.PlanEndDate}}
+												{% endif %}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									<td >{{obj.IssuesLogged}}</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{{auto1.Remarks}}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									
+								</tr>
+								{% endfor %}
+								{% for obj in pq_list1 %}
+								<tr >
+									<td >{{obj.ProductName}}</td>
+									
+									<td >{{obj.CurrentStatus}}</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate%}
+													{{auto1.PlanStartDate}}
+												{% else %}
+													<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+													{{auto1.PlanStartDate}}
+												{% endif %}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+													{{auto1.PlanEndDate}}
+												{% else %}
+													<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+													{{auto1.PlanEndDate}}
+												{% endif %}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									<td >{{obj.IssuesLogged}}</td>
+									<td >
+									{% for auto1 in pqproject_list %}
+										{% if auto1.ProductName == obj.ProductName %}
+											
+												{{auto1.Remarks}}
+											
+										{% endif %}
+									{% endfor %}
+									</td>
+									
+								</tr>
+								{% endfor %}
+							</tbody>
+					</table>
+				</div>
+				<div ><br/><br/>
+					<h3><u><b>Automation </b></u></h3>
+					<table cellpadding="10">
+						<thead>
+							<tr >
+								<th >Product Name</th>
+								
+								<th >Current Status</th>
+								<th >Plan Start date</th>
+								<th >Plan End date</th>
+								<th >Total Planned Scenarios</th>
+								<th >Scenarios Covered</th>
+								<th >Scenarios In-Progress</th>
+								<th >Remarks</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for auto in auto_list %}
+							<tr >
+								<td >{{auto.ProductName}}</td>
+								
+								<td >{{auto.CurrentStatus}}</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate %}
+												{{auto1.PlanStartDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+												{{auto1.PlanStartDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+												{{auto1.PlanEndDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+												{{auto1.PlanEndDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >{{auto.TotalScenarios}}</td>
+								<td >{{auto.ScenariosCovered}}</td>
+								<td >{{auto.ScenariosInprogress}}</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{{auto1.Remarks}}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								
+							</tr>
+							{% endfor %}
+							{% for auto in auto_list1 %}
+							<tr >
+								<td >{{auto.ProductName}}</td>
+								
+								<td >{{auto.CurrentStatus}}</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{% if auto1.TempPlanStartDate ==  auto1.PlanStartDate %}
+												{{auto1.PlanStartDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanStartDate}}</strike><br/>
+												{{auto1.PlanStartDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{% if auto1.TempPlanEndDate ==  auto1.PlanEndDate%}
+												{{auto1.PlanEndDate}}
+											{% else %}
+												<strike style="color:Red">{{auto1.TempPlanEndDate}}</strike><br/>
+												{{auto1.PlanEndDate}}
+											{% endif %}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								<td >{{auto.TotalScenarios}}</td>
+								<td >{{auto.ScenariosCovered}}</td>
+								<td >{{auto.ScenariosInprogress}}</td>
+								<td >
+								{% for auto1 in autoproject_list %}
+									{% if auto1.ProductName == auto.ProductName %}
+										
+											{{auto1.Remarks}}
+										
+									{% endif %}
+								{% endfor %}
+								</td>
+								
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div><br/><br/><br/><br/>
+		<div class="footer">
+<small>&copy Designed By Clinical Testing Team, ArisGlobal<small>
+</div>
+	</div>
+	
+</body>
+</html>

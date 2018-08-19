@@ -1,0 +1,10 @@
+pip install:
+django = 1.11
+redis windows github download
+eventlet
+celery = 4.0.2
+kombu = 4.0.2
+billiard = default
+redis
+django-celery-beat
+django-celery-results
